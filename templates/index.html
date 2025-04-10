@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Password Cracking Simulation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <h1>Password Cracking Simulation</h1>
+    <p>This simulation demonstrates how passwords are cracked and how users typically think about password security. Input a password and see how it would fare against different attacks.</p>
+    
+    <div class="container">
+        <form id="passwordForm">
+            <div class="form-group">
+                <label for="password_input">Enter a password:</label>
+                <input type="text" id="password_input" name="password_input" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="attack_method">Select attack method:</label>
+                <select id="attack_method" name="attack_method">
+                    <option value="brute_force">Brute Force Attack</option>
+                    <option value="dictionary">Dictionary Attack</option>
+                    <option value="pattern">Pattern Analysis</option>
+                </select>
+            </div>
+            
+            <button type="submit">Simulate Attack</button>
+        </form>
+    </div>
+    
+    <div class="results" id="resultsContainer">
+        <h2>Password Analysis Results</h2>
+        
+        <div class="result-section">
+            <h3>Password Strength</h3>
+            <p id="passwordStrength"></p>
+            <div class="strength-meter">
+                <div class="strength-value" id="strengthMeter"></div>
+            </div>
+            <p id="passwordStats"></p>
+            <p id="crackTime"></p>
+        </div>
+        
+        <div class="result-section">
+            <h3>Simulation Results</h3>
+            <p id="simulationMethod"></p>
+            <div id="simulationDetails"></div>
+            
+            <!-- Enhanced simulation results sections -->
+            <div id="bruteForceSim" class="sim-details">
+                <h4>Brute Force Simulation Details</h4>
+                <div class="char-sets"></div>
+                <div class="attempts-container">
+                    <h5>Sample Attack Progression</h5>
+                    <div class="attempts-list"></div>
+                </div>
+                <div class="time-estimates">
+                    <h5>Time Estimates by Search Space Coverage</h5>
+                    <div class="estimates-grid"></div>
+                </div>
+                <div class="hardware-comparison">
+                    <h5>Hardware Comparison</h5>
+                    <div class="hardware-grid"></div>
+                </div>
+            </div>
+            
+            <div id="dictionarySim" class="sim-details">
+                <h4>Dictionary Attack Simulation Details</h4>
+                <div class="dict-info"></div>
+                <div class="similar-passwords">
+                    <h5>Similar Known Passwords</h5>
+                    <ul class="similar-list"></ul>
+                </div>
+                <div class="attack-progress">
+                    <h5>Attack Progression</h5>
+                    <div class="progress-steps"></div>
+                </div>
+                <div class="dictionary-info">
+                    <h5>Dictionary Information</h5>
+                    <div class="dict-sizes"></div>
+                </div>
+            </div>
+            
+            <div id="patternSim" class="sim-details">
+                <h4>Pattern Analysis Simulation Details</h4>
+                <div class="pattern-overview"></div>
+                <div class="pattern-details-container">
+                    <h5>Detected Patterns</h5>
+                    <div class="patterns-grid"></div>
+                </div>
+                <div class="char-distribution">
+                    <h5>Character Distribution</h5>
+                    <div class="distribution-chart"></div>
+                </div>
+                <div class="risk-assessment">
+                    <h5>Risk Assessment</h5>
+                    <div class="risk-indicator"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="result-section">
+            <h3>Mental Models & Security Insights</h3>
+            <div id="mentalModels"></div>
+        </div>
+    </div>
+    
+    <div class="edu-container" id="educationalSection">
+        <h2>Understanding Password Mental Models</h2>
+        
+        <div class="edu-section">
+            <h3>What are Mental Models in Password Creation?</h3>
+            <p>Mental models are psychological representations of how we think things work. When creating passwords, users often rely on mental shortcuts (heuristics) that can lead to predictable patterns and security vulnerabilities.</p>
+            
+            <div class="info-card">
+                <h4>Common Password Mental Models</h4>
+                <div class="model-grid">
+                    <div class="model-item">
+                        <h5>Memorability Bias</h5>
+                        <p>Users prioritize passwords they can remember over security, leading to simple patterns like names + birth years or meaningful words.</p>
+                    </div>
+                    <div class="model-item">
+                        <h5>Pattern Dependence</h5>
+                        <p>People think in patterns like keyboard walks (qwerty123) or sequential numbers (abc123) believing they're random when they're actually predictable.</p>
+                    </div>
+                    <div class="model-item">
+                        <h5>Substitution Fallacy</h5>
+                        <p>The belief that replacing letters with similar-looking numbers (e→3, a→@) creates strong security, when these are the first substitutions attackers check.</p>
+                    </div>
+                    <div class="model-item">
+                        <h5>Length Misconception</h5>
+                        <p>The mental model that 8 characters is sufficient because a website allows it, when in reality longer passwords are exponentially stronger.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="edu-section">
+            <h3>Cognitive Biases in Password Security</h3>
+            <p>Our thinking patterns often lead us to create passwords that feel secure but are actually vulnerable:</p>
+            <ul class="bias-list">
+                <li><strong>False Sense of Security</strong>: People often believe their password creation strategies are unique when they follow common patterns.</li>
+                <li><strong>Optimism Bias</strong>: "It won't happen to me" thinking leads to reusing passwords across sites.</li>
+                <li><strong>Effort Heuristic</strong>: The belief that adding complexity to a password (like one symbol) is enough, valuing convenience over security.</li>
+                <li><strong>Availability Heuristic</strong>: Using memorable information readily available in memory (like pet names, birth dates) that could be easily found by attackers.</li>
+            </ul>
+        </div>
+        
+        <div class="edu-section">
+            <h3>Creating Better Passwords</h3>
+            <p>Understanding these mental models helps us create more secure passwords:</p>
+            <div class="tips-container">
+                <div class="tip">
+                    <div class="tip-icon">🔒</div>
+                    <div class="tip-text">Use random passphrases (4+ unrelated words) instead of single words with substitutions</div>
+                </div>
+                <div class="tip">
+                    <div class="tip-icon">📏</div>
+                    <div class="tip-text">Prioritize length over complexity - longer passwords take exponentially longer to crack</div>
+                </div>
+                <div class="tip">
+                    <div class="tip-icon">🔄</div>
+                    <div class="tip-text">Use different passwords for different sites to prevent credential stuffing attacks</div>
+                </div>
+                <div class="tip">
+                    <div class="tip-icon">🛠️</div>
+                    <div class="tip-text">Consider a password manager to generate and store truly random passwords</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="edu-section">
+            <h3>Mental Models vs. Reality</h3>
+            <div class="comparison-table">
+                <div class="comparison-header">
+                    <div>How Users Think</div>
+                    <div>Reality</div>
+                </div>
+                <div class="comparison-row">
+                    <div>"Adding a number and symbol makes my password secure"</div>
+                    <div>Password crackers test common character substitutions first</div>
+                </div>
+                <div class="comparison-row">
+                    <div>"My password is too obscure to guess"</div>
+                    <div>Modern crackers can test billions of combinations per second</div>
+                </div>
+                <div class="comparison-row">
+                    <div>"Eight characters is enough if it's complex"</div>
+                    <div>Length provides exponentially more security than complexity</div>
+                </div>
+                <div class="comparison-row">
+                    <div>"My password strategy is unique"</div>
+                    <div>Most people follow predictable patterns when creating passwords</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
