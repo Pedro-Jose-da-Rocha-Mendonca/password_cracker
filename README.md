@@ -21,8 +21,7 @@ The visual simulation makes abstract security concepts tangible, helping bridge 
 ### Prerequisites
 - Python 3.6 or higher
 - Flask
-- Other dependencies (specified in requirements.txt)
-
+  
 ### Installation
 
 1. Clone the repository:
